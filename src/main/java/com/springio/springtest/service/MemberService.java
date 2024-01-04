@@ -3,6 +3,8 @@ package com.springio.springtest.service;
 import com.springio.springtest.domain.Member;
 import com.springio.springtest.repository.MemberRepository;
 import com.springio.springtest.repository.MemoryMemberRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
@@ -21,13 +23,13 @@ public class MemberService {
         // 같은 이름이 있는 중복회원 X
 //        Optional<Member> result = memberRepository.findByName(member.getName());
 
-        vaildateDuplicateMember(member);
+        validateDuplicateMember(member);
         memberRepository.save(member);
 
         return member.getId();
     }
 
-    private void vaildateDuplicateMember(Member member){
+    private void validateDuplicateMember(Member member){
         memberRepository.findByName(member.getName())
                 .ifPresent(m->{
                     throw new IllegalStateException("이미 존재하는 회원입니다.");

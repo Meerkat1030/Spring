@@ -1,6 +1,7 @@
 package com.springio.springtest.repository;
 
 import com.springio.springtest.domain.Member;
+import org.springframework.stereotype.Repository;
 
 import java.util.*;
 
